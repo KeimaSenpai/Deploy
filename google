@@ -4,9 +4,8 @@ from IPython.display import clear_output
 
 # @markdown <br><center><h2><strong><font color=red>🔗 KeimaSenpai 🔗</strong></h2></center>
 
-
 #@markdown <font color=ORANGE>🔗 Coloque la URL de su repo de GitHub: 🔗
-GITHUB_URL = ""  #@param {type:"string"}
+GITHUB_URL = "https://github.com/KeimaSenpai/XSubAproba"  #@param {type:"string"}
 
 # Determine base directory based on environment
 base_dir = './repo'  # Save repo in ./repo directory relative to current directory
@@ -18,15 +17,14 @@ def clone_or_update_repo(repo_url, base_directory):
 
     # Check if the repository directory exists
     if os.path.exists(project_dir):
-        print(f"Deleting existing repository at: {project_dir} ...")
-        shutil.rmtree(project_dir)
-        print("Deleted existing repository successfully!")
-
-    # Clone the repository
-    print(f"Cloning repository from {repo_url}...")
-    clone_cmd = f"git clone {repo_url} {project_dir}"
-    os.system(clone_cmd)
-    print("Repository cloned successfully!")
+        print(f"Repository already exists at: {project_dir}. Skipping clone.")
+        return project_dir
+    else:
+        # Clone the repository
+        print(f"Cloning repository from {repo_url}...")
+        clone_cmd = f"git clone {repo_url} {project_dir}"
+        os.system(clone_cmd)
+        print("Repository cloned successfully!")
 
     return project_dir
 
@@ -51,7 +49,7 @@ print("All requirements installed successfully!")
 clear_output()
 
 #@markdown <font color=ORANGE>🎥 Install FFMPEG? 🎥
-install_ffmpeg = "Yes"  #@param ["Yes", "No"]
+install_ffmpeg = "No"  #@param ["Yes", "No"]
 if install_ffmpeg == "Yes":
     print("Installing FFMPEG...")
     os.system("apt-get install ffmpeg -qq")  # Install ffmpeg quietly
@@ -61,25 +59,25 @@ else:
 
 #@markdown ### <font color=ORANGE>🔧 Variables de Entorno 🔧
 
-#@markdown <center> <font color=green>✍️ Paste Your Telegram API ID From ≫ my.telegram.org </center> { display-mode: "form" }
 
-API_ID = ""  #@param {type:"string"}
+API_ID = "11029886"  #@param {type:"string"}
 os.environ['API_ID'] = API_ID
 
-#@markdown <center> </font> <font color=green>✍️ Paste Your Telegram API HASH From ≫ my.telegram.org <img src='https://i.ibb.co/BPnZ2xy/Telegram-Api.png' height="40" /> </center> { display-mode: "form" }
-
-API_HASH = ""  #@param {type:"string"}
+API_HASH = "4e74899bfd41879c6a4b48cf6a07f456"  #@param {type:"string"}
 os.environ['API_HASH'] = API_HASH
+
+OWNER_ID = "1618347551" #@param {type:"string"}
+os.environ['OWNER_ID'] = OWNER_ID
 
 #@markdown <center> </font> <font color=green>✍️ Paste Your Telegram BOT TOKEN { display-mode: "form" }
 
-BOT_TOKEN = ""  #@param {type:"string"}
+BOT_TOKEN = "5998213610:AAHIAja5wDpUyju6GePY3eD7cyxkCUW02xk"  #@param {type:"string"}
 os.environ['BOT_TOKEN'] = BOT_TOKEN
 
 clear_output()
 
 #@markdown <font color=ORANGE>🔧 Comando para iniciar el bot: 🔧
-RUN_COMMAND = "python3 main.py"  #@param {type:"string"}
+RUN_COMMAND = "python3 bot.py"  #@param {type:"string"}
 
 # Run the bot
 print(f"Running command: {RUN_COMMAND} ...")
